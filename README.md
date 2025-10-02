@@ -1,4 +1,4 @@
-\# Relay Server Flowerpot
+# Relay Server Flowerpot
 
 This project centers around an ESP32 acting as a relay server in a known network and assigned a port. A client ESP32 (in a flowerpot) can then connect to the relay server to receive and sent messages -> messages usually from a client PC. Both the Client PC and the flowerpot can be anywhere in the world as long as they have access to a wi-fi network.
 
