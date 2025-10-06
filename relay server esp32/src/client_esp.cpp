@@ -11,6 +11,9 @@ WiFiClient client;
 
 void setup() {
   Serial.begin(115200);
+
+  Serial.println(ssid);
+  Serial.println(password);
   WiFi.begin(ssid, password);
 
   while (WiFi.status() != WL_CONNECTED) {
@@ -30,14 +33,18 @@ void setup() {
 void loop() {
   if (client.connected()) {
     // Send a message every 5 seconds
-    client.println("Hello from the remote ESP32!");
-    Serial.println("Sent message to relay server.");
+    // client.println("Hello from the remote ESP32!");
+    // Serial.println("Sent message to relay server.");
 
     // Check for incoming messages from the relay server
     if (client.available()) {
       String received = client.readStringUntil('\n');
+      received.trim(); // Remove any trailing newline or carriage return
       Serial.print("Received from relay: ");
       Serial.println(received);
+
+      client.println("Message received!");
+      Serial.println("Sent acknowledgment to relay server.");
     }
     delay(5000);
   } else {
